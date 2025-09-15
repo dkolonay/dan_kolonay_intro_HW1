@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-
-
     <title>Dan Kolonay Intro</title>
-
-
 </head>
 
 <body>
@@ -29,9 +25,12 @@
             <h2>Some facts about me:</h2>
             <p class="current-fact fade-in"></p>
         </div>
-            <button onclick="nextFact()">Learn another fact about me</button>
+        <button onclick="nextFact()">Learn another fact about me</button>
     </div>
+
     <script>
+
+        //Initialize list of facts
         let currentFact = 0;
         const facts = [
             "I'm a dog walker",
@@ -40,21 +39,27 @@
             "I like to watch hockey. Go Penguins!",
             "I have a degree in economics",
             "I like to play chess",
+            "I'm a computer science major",
+            "I'm originally from Pittsburgh",
             "I didn't feel like making this box responsive to long text strings so my other facts are short",
             "Facts of this length work better :)"
-
         ]
 
+        //load the page with the first fact shown
         document.querySelector(".current-fact").innerHTML = facts[0]
+
+        //Function to animate the selfie and change to alternate image
         function flipImage() {
             const images = document.getElementsByTagName("img");
             const image_container = document.querySelector(".img-container")
+
             if (image_container.className.includes("flipped")) {
                 image_container.classList.remove("flipped")
             } else {
                 image_container.classList.add("flipped")
             }
 
+            //Half way through the animation, change which image is showing
             setTimeout(() => {
                 for (let i = 0; i < images.length; i++) {
                     if (images[i].className == "show") {
@@ -66,24 +71,37 @@
             }, 350)
         }
 
+        //Cycle to the next fact in the list
+
+        cycling = false
         function nextFact() {
-            currentFact = (currentFact + 1) % facts.length
-            const factElement = document.querySelector(".current-fact");
-            console.log(factElement.parentElement)
-            factElement.classList.add("fade-out")
-            setTimeout(() => {
-                const parentElement = factElement.parentElement
-                parentElement.lastElementChild.remove()
-                const newFact = document.createElement('p')
-                newFact.innerHTML = facts[currentFact]
-                newFact.classList.add("current-fact")
-                parentElement.append(newFact)
-                setTimeout(()=>{
+            if (!cycling) {
+                //Fade out the old fact
+                cycling = true
+                currentFact = (currentFact + 1) % facts.length //if last fact, go to first
+                const factElement = document.querySelector(".current-fact");
+                factElement.classList.add("fade-out")
 
-                    newFact.classList.add("fade-in")
-                },10)
-            }, 300)
+                //Wait for old fact to fade before adding new one
+                setTimeout(() => {
+                    cycling = false
+                    const parentElement = factElement.parentElement
 
+                    parentElement.lastElementChild.remove()
+
+                    const newFact = document.createElement('p')
+                    newFact.innerHTML = facts[currentFact]
+                    newFact.classList.add("current-fact")
+
+                    parentElement.append(newFact)
+                    //shift new element quickly to the left and wait to smoothly fade in
+                    setTimeout(() => {
+
+                        newFact.classList.add("fade-in")
+                    }, 50)
+
+                }, 300)
+            }
         }
     </script>
 </body>
