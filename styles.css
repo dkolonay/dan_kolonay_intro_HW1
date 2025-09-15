@@ -1,0 +1,125 @@
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+margin: 0;
+height: 100%;
+background-image: radial-gradient(rgb(255, 255, 255), rgb(229, 209, 149));
+
+}
+
+h1{
+    color:rgb(57, 57, 57);
+    font-size: 50px;
+    align-self: left;
+}
+
+h2{
+    font-size:18px;
+    text-align: center;
+}
+
+.page-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    left: 0;
+    top: 0;
+    position: absolute;
+    visibility:hidden;
+    border-radius: 10px;
+}
+
+.image-area{
+    display:flex;
+    flex-direction: row;
+    position: relative;
+    max-width: 90%;
+}
+
+.img-container{
+    width: 350px;
+    height: 350px;
+    aspect-ratio: 1;
+    position: relative;
+    transform:rotateY(0deg);
+    transition: transform 0.7s ease-in-out;
+    margin-bottom: 50px;
+    
+}
+
+.click-message{
+    width: 300px;
+    position: absolute;
+    right: -305px;
+}
+
+.facts-section{
+    border: 2px solid gray;
+    width: 700px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    box-shadow: 6px 6px 10px 0px rgb(215, 198, 163);
+}
+
+.current-fact{
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform:translate(-50px);
+    font-size: 24px;
+}
+
+.fade-in{
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform:translate(0px)
+}
+
+.fade-out{
+    opacity: 0;
+    transform: translate(50px);
+    transition:opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+
+
+.flipped{
+    transform:rotateY(180deg);
+    transition: transform 0.7s ease-in-out;
+}
+
+.show{
+    visibility:visible;
+}
+
+button{
+    border: none;
+    width: 350px;
+    color: white;
+    font-size: 18px;
+    font-weight: 1000;
+    background-color: rgb(172, 143, 46);
+    padding: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 8px 3px  rgb(180, 166, 128);
+    transition: background-color 0.3s ease;
+    margin-bottom: 100px;
+}
+
+button:hover{
+    cursor:pointer;
+    background-color:rgb(203, 183, 111);
+    transition: background-color 0.3s ease;
+}
